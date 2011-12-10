@@ -30,8 +30,8 @@ static NSString * const kScreenSaverURLKey = @"kScreenSaverURL";
 static NSString * const kScreenSaverTimeKey = @"kScreenSaverTime";
 // Default intervals.
 static NSTimeInterval const kOneMinute = 60.0;
-static NSTimeInterval const kDefaultDuration = 5 * 60.0;
-static NSString * const kScreenSaverDefaultURL = @"http://www.google.com/";
+static NSTimeInterval const kDefaultDuration = 60.0 * kOneMinute;
+static NSString * const kScreenSaverDefaultURL = @"http://orca.casa.ucl.ac.uk/~george/snow-mo/?credits=0";
 // Configuration sheet columns.
 static NSString * const kTableColumnURL = @"url";
 static NSString * const kTableColumnTime = @"time";
