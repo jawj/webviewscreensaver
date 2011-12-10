@@ -68,6 +68,17 @@ static NSString * const kTableColumnTime = @"time";
     [webView_ setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
     [webView_ setAutoresizesSubviews:YES];
     
+    webView_.hidden = YES;
+    NSBox *blackBox = [[[NSBox alloc] initWithFrame:self.bounds] autorelease];
+    [blackBox setBoxType:NSBoxCustom];
+    [blackBox setFillColor:[NSColor blackColor]];
+    [self addSubview:blackBox];
+      
+    WebPreferences *webPrefs = [webView_ preferences];
+    if ([webPrefs respondsToSelector:@selector(setWebGLEnabled:)]) {
+      [webPrefs setWebGLEnabled:YES];
+    }
+    
     ScreenSaverDefaults *prefs = [ScreenSaverDefaults defaultsForModuleWithName:kScreenSaverName];
     urls_ = [[prefs arrayForKey:kScreenSaverURLListKey] retain];
     if (![urls_ count] || ![[urls_ objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
@@ -281,6 +292,7 @@ static NSString * const kTableColumnTime = @"time";
 }  
      
 - (void)webView:(WebView *)webView didFinishLoadForFrame:(WebFrame *)frame {
+  webView.hidden = NO;
   [webView resignFirstResponder];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
 }
